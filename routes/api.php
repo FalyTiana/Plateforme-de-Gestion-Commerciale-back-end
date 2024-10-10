@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EntrepriseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -10,3 +11,5 @@ Route::get('/user', function (Request $request) {
 
 
 Route::post('/entreprise-avec-utilisateur', [EntrepriseController::class, 'createEntrepriseWithUser']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Entreprise;
 use App\Models\Utilisateur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class EntrepriseController extends Controller
 {
@@ -74,14 +75,19 @@ class EntrepriseController extends Controller
             ]);
 
             return response()->json([
-                'message' => 'Entreprise et utilisateur créés avec succès',
+                'message' => 'Entreprise et admin créés avec succès',
                 'entreprise' => $entreprise,
                 'utilisateur' => $utilisateur,
             ], 201);
         } catch (\Exception $e) {
             // Gérer les erreurs
+            Log::error(
+                'Une erreur est survenue lors de la création de projets.',
+                $e->getMessage()
+            );
+            
             return response()->json([
-                'message' => 'Une erreur est survenue lors de la crée une entreprise avec un utilisateur associé',
+                'message' => 'Une erreur est survenue lors de la crée une entreprise avec un admin associé',
                 'error' => $e->getMessage(),
             ], 500);
         }
