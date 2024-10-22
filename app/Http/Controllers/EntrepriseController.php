@@ -45,12 +45,12 @@ class EntrepriseController extends Controller
                 'entreprise_pays' => 'required|string|max:255',
                 'entreprise_ville' => 'required|string|max:255',
                 'entreprise_devise' => 'required|string|max:255',
-                'entreprise_abreviation_devise' => 'required|string|max:10',
+                'entreprise_abreviation_devise' => 'required|string',
                 'utilisateur_nom' => 'required|string|max:255',
                 'utilisateur_prenom' => 'nullable|string|max:255',
                 'utilisateur_email' => 'required|string|email|max:255|unique:utilisateurs,email',
-                'utilisateur_telephone' => 'required|string|max:20',
-                'utilisateur_mot_de_passe' => 'required|string|min:8',
+                'utilisateur_telephone' => 'required|string',
+                'utilisateur_mot_de_passe' => 'required|string',
                 'utilisateur_post' => 'required|string|max:255',
             ]);
 
@@ -83,7 +83,7 @@ class EntrepriseController extends Controller
             // Gérer les erreurs
             Log::error(
                 'Une erreur est survenue lors de la création de projets.',
-                $e->getMessage()
+                ['error' => $e->getMessage()]
             );
             
             return response()->json([
