@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 class AuthController extends Controller
 {
     /**
-     * Authentifier l'utilisateur et retourner un token.
+     * Authentifier l'utilisateur et retourner un token. 
      */
     public function login(Request $request)
     {
